@@ -136,6 +136,8 @@ function CardPokemon(info) {
 }
 
 
+
+
 // const click_one = document.querySelector('.click1')
 
 // let api1 = {
