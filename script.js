@@ -130,25 +130,10 @@ function CardPokemon(info) {
 	<h1>order: ${info.order}</h1>
 	<h1>url: ${info.forms[0].url}</h1>
 	<h1>location: ${info.location_area_encounters}</h1>
-
-	<h1>${info.moves[0].move.name}</h1>
 	</div>`
 }
 
 
-
-
-// const click_one = document.querySelector('.click1')
-
-// let api1 = {
-// 	main: 'https://pokeapi.co/api/v2/pokemon/1/'
-// }
-
-
-
-// const set_date = (url). => 
-//   fetch(url)
-// 	  .then((res) => res.json())
 
 
 
