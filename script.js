@@ -126,7 +126,7 @@ function CardPokemon(info) {
 	<div>
 	<h1>name: ${info.name}</h1>
 	<h1>id: ${info.id}</h1>
-	
+
 	<h1>order: ${info.order}</h1>
 	<h1>url: ${info.forms[0].url}</h1>
 	<h1>location: ${info.location_area_encounters}</h1>
