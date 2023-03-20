@@ -1,0 +1,17 @@
+
+
+.title_h1 {
+	padding: 20px 20px;
+	border: solid 1px red;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.title_card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	
+	
+
+}
