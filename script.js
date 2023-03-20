@@ -100,6 +100,8 @@ const setDate = (url) =>
 
 
 
+
+
 function CardTitle(pokemon) {
 	return `
 	<div class="title_card" onClick="setInfoPokemon('${pokemon.url}')">
@@ -108,6 +110,8 @@ function CardTitle(pokemon) {
 		</div>
 	</div>`
 }
+
+
 
 
 
