@@ -1,14 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 
-.title_h1 {
-	padding: 20px 20px;
-	border: solid 1px red;
-	border-radius: 5px;
-	cursor: pointer;
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 90px;
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 .title_card {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	width: 200px;
+	height: 100px;
+	margin: 10px;
+	background-color: blueviolet;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	cursor: pointer;
+	overflow: hidden;
+	margin-top: 50px;
+
 }
+
+
+.title_h1:hover {
+	letter-spacing: 0.25em;
+	transition: 1s;
+	color: white;
+}
+
+.title_text {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.title_h1 {
+	font-size: 20px;
+	font-weight: bold;
+	color: black;
+	text-transform: capitalize;
+	margin: 0;
+	text-align: center;
+}
+
+
+/* ====================================================================== */
+
+
+
+.container h1 span {
+	color: blueviolet;
+}
+
+.card_info {
+	margin: 0px 18%;
+}
+
+.reload {
+	cursor: pointer;
+	position: relative;
+	right: 110px;
+	border: 1px solid black;
+	border-radius: 6px;
+	padding: 5px 5px;
+	font-size: 35px;
+	transition: 0.5s;
+	color: black;
+	background-color: blueviolet;
+}
+
+.reload:hover {
+	color: blueviolet;
+	transition: 1s;
+	letter-spacing: 0.50em;
+	color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
