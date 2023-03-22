@@ -1,78 +1,5 @@
 
 
-// console.log('Привет 1')
-
-// setTimeout(() => console.log('Привет 2'), 2000)
-
-// setTimeout(() => console.log('Привет 3'), 1000)
-
-// console.log('Привет 4')
-
-// setTimeout(() => console.log('Привет 5'), 0)
-
-// console.log('get Data...')
-
-// setTimeout(() => {
-// 	console.log('Preparing date...')
-// 	let data = {
-// 		body: [],
-// 		status: 'working',
-// 		port: 2000, 
-// 	}
-
-// }, 2000)
-
-
-// let prms = new Promise((resolve) => {
-// 	setTimeout(() => {
-// 		let data = {
-// 		body: [],
-// 		status: 'working',
-// 		port: 2000, 
-// 	}
-// 		console.log('Preparing date...')
-// 		resolve(data)
-// 	}, 2000)
-
-// 	prms.them(data  => {
-// 	  return new Promise(resolve => {
-// 			setTimeout(() => {
-// 				data.location = 'Ukraina'
-// 				resolve(data)
-// 			}, 3000)
-// 		})
-// 	}).them(data => {
-// 		console.log(data)
-// 	})
-// })
-
-
-// Promise.all([aleep(4000), sleep(2000)]).then(() => {
-// 	console.log('Метод all')
-// })
-
-// Promise.race([sleep(4000), sleep(2000)]).then(() => {
-// 	console.log('Метод race')
-// })
-
-
-
-
-// window.addEventListener('load', () => {
-// 	setDate('users').then((date) => {
-// 		const template =data.map((item) => CardTemplate(item)).join(' ');
-// 		container.innerHTML = template;
-// 	})
-// })
-
-// function setDate(resources) {
-// 	return 	fetch(`https://jsonplaceholder.typicode.com/${resources}`)
-// 	.then((response) => response.json());
-// 	}
-
-////////////////////////////////////////////////////////////////////////////////////*
-
-
 const container = document.querySelector('.container')
 
 
@@ -126,7 +53,7 @@ function CardPokemon(info) {
 
 	console.log(info)
 	return`
-	<div class="card_info	">
+	<div class="card_info">
 	<buttom class="reload" onClick="reloadWindowFunc()">Back</buttom>
 	<h1><span>Name: </span> ${info.name}</h1>
 	<h1><span>Id: </span> ${info.id}</h1>
