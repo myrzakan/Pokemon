@@ -23,6 +23,8 @@ let api = {
 
 
 
+
+
 window.addEventListener('load', () => {
 	setDate(`${api.main}?offset=${``}&limits=${``}`).then((data) => {
 		console.log(data);
