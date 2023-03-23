@@ -1,7 +1,20 @@
 
 
 const container = document.querySelector('.container')
+const btnPrev = document.querySelector('.btn_prev')
+const btnNext = document.querySelector('.btn_next')
+const page = document.querySelector('.conter')
 
+console.dir(page);
+
+const LIMIT = 20
+const TOTAL_POKEMONS = 1118
+const TOTAL_PAGES = Math.floor(TOTAL_POKEMONS / LIMIT)
+
+
+let pageCounter = 1
+
+let offsetCounter = 0
 
 let api = {
 	main: 'https://pokeapi.co/api/v2/pokemon'
@@ -11,7 +24,7 @@ let api = {
 
 
 window.addEventListener('load', () => {
-	setDate(api.main).then((data) => {
+	setDate(`${api.main}?offset=${``}&limits=${``}`).then((data) => {
 		console.log(data);
 		const temp = data.results.map((pokemon) => CardTitle(pokemon)).join(' ');
 		container.innerHTML = temp;
@@ -46,6 +59,8 @@ function CardTitle(pokemon) {
 
 const setInfoPokemon = (url) => {
 	setDate(url).then(data => container.innerHTML = CardPokemon(data))
+	btnNext.style.display = 'none'
+	btnPrev.style.display = 'none'
 }
 
 
@@ -78,12 +93,74 @@ function reloadWindowFunc() {
 	window.location.reload()
 }
 
+// ?Pagination
 
+window.addEventListener('load', () => {
+	page.innerHTML = pageCounter
+	btnPrev.setAttribute('disabled', true)
+})
 
+btnNext.addEventListener('click', e => {
+	e.preventDefault()
+	btnPrev.removeAttribute('disabled')
+	if(pageCounter >= 1 && pageCounter <= TOTAL_PAGES) {
+		if (pageCounter === TOTAL_PAGES) {
+			btnNext.setAttribute('disabled', true)
+			setDate(
+				`$api.main{?offset=${offsetCounter += LIMIT}&limit=${LIMIT}}`
+			).then((data) => {
+				pageCounter++
+				page.innerHTML = pageCounter
+				let temp = data.results.map((pokemon) => CardTitle(pokemon)).join(' ')
+				container.innerHTML = temp
+			})
+		}else {
+			setDate(
+				`${api.main}?offset=${offsetCounter += LIMIT}&limit=${LIMIT}`
+			).then((data) => {
+				pageCounter++
+				page.innerHTML = pageCounter
+				let temp = data.results.map((pokemon) => CardTitle(pokemon)).join(' ')
+				container.innerHTML = temp
+			})
+		}
+	}
+})
 
+// prev
 
-
-
+btnPrev.addEventListener("click", (e) => { 
+  e.preventDefault(); 
+	
+  if (pageCounter >= 1) { 
+    pageCounter --
+ 
+    if (pageCounter === 1) { 
+      btnPrev.setAttribute("disabled", true); 
+      offsetCounter = 0; 
+      setDate(`${api.main}?offset=${offsetCounter}&limit=${LIMIT}`).then( 
+        (data) => { 
+          page.innerHTML = pageCounter; 
+          let temp = data.results 
+            .map((pokemon) => CardTitle(pokemon)) 
+            .join(""); 
+          container.innerHTML = temp; 
+        } 
+      ); 
+    } else { 
+      setDate(`${api.main}?offset=${offsetCounter -= LIMIT}&limit=${LIMIT}`).then( 
+        (data) => { 
+          btnNext.removeAttribute('disabled') 
+          page.innerHTML = pageCounter; 
+          let temp = data.results 
+            .map((pokemon) => CardTitle(pokemon)) 
+            .join(""); 
+          container.innerHTML = temp; 
+        } 
+      ); 
+    } 
+  } 
+})
 
 
 

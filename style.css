@@ -95,6 +95,43 @@
 	color: white;
 }
 
+/*==============  */
+
+
+.btn_content {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+
+}
+
+.btn_next, .btn_prev {
+	padding: 8px 30px;
+	margin-top: 40px;
+	border-radius: 6px;
+	border: none;
+	cursor: pointer;
+	font-family: 'Josefin Sans', sans-serif;
+	}
+
+.btn_next:hover {
+	transition: 0.5s;
+	background-color: blueviolet;
+}
+
+.btn_prev:hover {
+	transition: 0.5s;
+	background-color: blueviolet;
+}
+
+.conter {
+	color: blueviolet;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size:20px;
+}
+
 
 /* video media */
 
