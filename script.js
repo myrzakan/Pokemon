@@ -1,5 +1,4 @@
 
-
 const container = document.querySelector('.container')
 const btnPrev = document.querySelector('.btn_prev')
 const btnNext = document.querySelector('.btn_next')
@@ -21,10 +20,6 @@ let api = {
 }
 
 
-
-
-
-
 window.addEventListener('load', () => {
 	setDate(`${api.main}?offset=${``}&limits=${``}`).then((data) => {
 		console.log(data);
@@ -33,20 +28,20 @@ window.addEventListener('load', () => {
 		
 	
 	})
-})
-
-
+}) 
 
 
 const setDate = (url) => 
-	fetch(url) 
+		fetch(url) 
 	  .then((res) => res.json())
+	
+	
 
-
-
+   
 
 
 function CardTitle(pokemon) {
+	console.log(pokemon)
 	return `
 	<div class="title_card" onClick="setInfoPokemon('${pokemon.url}')">
 	  <div class="title_text">
@@ -64,6 +59,7 @@ const setInfoPokemon = (url) => {
 	btnNext.style.display = 'none'
 	btnPrev.style.display = 'none'
 }
+
 
 
 function CardPokemon(info) {
@@ -163,15 +159,6 @@ btnPrev.addEventListener("click", (e) => {
     } 
   } 
 })
-
-
-
-
-
-
-
-
-
 
 
 
