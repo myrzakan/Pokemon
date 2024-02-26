@@ -1,71 +1,51 @@
-
-const container = document.querySelector('.container')
-const btnPrev = document.querySelector('.btn_prev')
-const btnNext = document.querySelector('.btn_next')
-const page = document.querySelector('.conter')
+const container = document.querySelector('.container');
+const btnPrev = document.querySelector('.btn_prev');
+const btnNext = document.querySelector('.btn_next');
+const page = document.querySelector('.conter');
 
 console.dir(page);
 
-const LIMIT = 20
-const TOTAL_POKEMONS = 1118
-const TOTAL_PAGES = Math.floor(TOTAL_POKEMONS / LIMIT)
+const LIMIT = 20;
+const TOTAL_POKEMONS = 1118;
+const TOTAL_PAGES = Math.floor(TOTAL_POKEMONS / LIMIT);
 
+let pageCounter = 1;
 
-let pageCounter = 1
-
-let offsetCounter = 0
+let offsetCounter = 0;
 
 let api = {
-	main: 'https://pokeapi.co/api/v2/pokemon'
-}
-
+  main: 'https://pokeapi.co/api/v2/pokemon',
+};
 
 window.addEventListener('load', () => {
-	setDate(`${api.main}?offset=${``}&limits=${``}`).then((data) => {
-		console.log(data);
-		const temp = data.results.map((pokemon) => CardTitle(pokemon)).join(' ');
-		container.innerHTML = temp;
-		
-	
-	})
-}) 
+  setDate(`${api.main}?offset=${``}&limits=${``}`).then(data => {
+    console.log(data);
+    const temp = data.results.map(pokemon => CardTitle(pokemon)).join(' ');
+    container.innerHTML = temp;
+  });
+});
 
-
-const setDate = (url) => 
-		fetch(url) 
-	  .then((res) => res.json())
-	
-	
-
-   
-
+const setDate = url => fetch(url).then(res => res.json());
 
 function CardTitle(pokemon) {
-	console.log(pokemon)
-	return `
+  console.log(pokemon);
+  return `
 	<div class="title_card" onClick="setInfoPokemon('${pokemon.url}')">
 	  <div class="title_text">
 		  <h1 class="title_h1" >${pokemon.name}</h1>
 		</div>
-	</div>`
+	</div>`;
 }
 
-
-
-
-
-const setInfoPokemon = (url) => {
-	setDate(url).then(data => container.innerHTML = CardPokemon(data))
-	btnNext.style.display = 'none'
-	btnPrev.style.display = 'none'
-}
-
-
+const setInfoPokemon = url => {
+  setDate(url).then(data => (container.innerHTML = CardPokemon(data)));
+  btnNext.style.display = 'none';
+  btnPrev.style.display = 'none';
+};
 
 function CardPokemon(info) {
-
-	console.log(info)
-	return`
+  console.log(info);
+  return `
 	<div class="card_info">
 	<buttom class="reload" onClick="reloadWindowFunc()">Back</buttom>
 	<h1><span>Name: </span> ${info.name}</h1>
@@ -82,84 +62,74 @@ function CardPokemon(info) {
 	<h1><span>Height: </span>${info.height}</h1>
 	<h1><span>Weight: </span>${info.weight}</h1>
 	<h1><span>Stats: </span>${info.stats[0].base_stat}</h1>
-	</div>`
+	</div>`;
 }
 
-
-
 function reloadWindowFunc() {
-	window.location.reload()
+  window.location.reload();
 }
 
 // ?Pagination
 
 window.addEventListener('load', () => {
-	page.innerHTML = pageCounter
-	btnPrev.setAttribute('disabled', true)
-})
+  page.innerHTML = pageCounter;
+  btnPrev.setAttribute('disabled', true);
+});
 
 btnNext.addEventListener('click', e => {
-	e.preventDefault()
-	btnPrev.removeAttribute('disabled')
-	if(pageCounter >= 1 && pageCounter <= TOTAL_PAGES) {
-		if (pageCounter === TOTAL_PAGES) {
-			btnNext.setAttribute('disabled', true)
-			setDate(
-				`$api.main{?offset=${offsetCounter += LIMIT}&limit=${LIMIT}}`
-			).then((data) => {
-				pageCounter++
-				page.innerHTML = pageCounter
-				let temp = data.results.map((pokemon) => CardTitle(pokemon)).join(' ')
-				container.innerHTML = temp
-			})
-		}else {
-			setDate(
-				`${api.main}?offset=${offsetCounter += LIMIT}&limit=${LIMIT}`
-			).then((data) => {
-				pageCounter++
-				page.innerHTML = pageCounter
-				let temp = data.results.map((pokemon) => CardTitle(pokemon)).join(' ')
-				container.innerHTML = temp
-			})
-		}
-	}
-})
+  e.preventDefault();
+  btnPrev.removeAttribute('disabled');
+  if (pageCounter >= 1 && pageCounter <= TOTAL_PAGES) {
+    if (pageCounter === TOTAL_PAGES) {
+      btnNext.setAttribute('disabled', true);
+      setDate(
+        `$api.main{?offset=${(offsetCounter += LIMIT)}&limit=${LIMIT}}`,
+      ).then(data => {
+        pageCounter++;
+        page.innerHTML = pageCounter;
+        let temp = data.results.map(pokemon => CardTitle(pokemon)).join(' ');
+        container.innerHTML = temp;
+      });
+    } else {
+      setDate(
+        `${api.main}?offset=${(offsetCounter += LIMIT)}&limit=${LIMIT}`,
+      ).then(data => {
+        pageCounter++;
+        page.innerHTML = pageCounter;
+        let temp = data.results.map(pokemon => CardTitle(pokemon)).join(' ');
+        container.innerHTML = temp;
+      });
+    }
+  }
+});
 
 // prev
 
-btnPrev.addEventListener("click", (e) => { 
-  e.preventDefault(); 
-	
-  if (pageCounter >= 1) { 
-    pageCounter --
- 
-    if (pageCounter === 1) { 
-      btnPrev.setAttribute("disabled", true); 
-      offsetCounter = 0; 
-      setDate(`${api.main}?offset=${offsetCounter}&limit=${LIMIT}`).then( 
-        (data) => { 
-          page.innerHTML = pageCounter; 
-          let temp = data.results 
-            .map((pokemon) => CardTitle(pokemon)) 
-            .join(""); 
-          container.innerHTML = temp; 
-        } 
-      ); 
-    } else { 
-      setDate(`${api.main}?offset=${offsetCounter -= LIMIT}&limit=${LIMIT}`).then( 
-        (data) => { 
-          btnNext.removeAttribute('disabled') 
-          page.innerHTML = pageCounter; 
-          let temp = data.results 
-            .map((pokemon) => CardTitle(pokemon)) 
-            .join(""); 
-          container.innerHTML = temp; 
-        } 
-      ); 
-    } 
-  } 
-})
+btnPrev.addEventListener('click', e => {
+  e.preventDefault();
 
+  if (pageCounter >= 1) {
+    pageCounter--;
 
-
-
+    if (pageCounter === 1) {
+      btnPrev.setAttribute('disabled', true);
+      offsetCounter = 0;
+      setDate(`${api.main}?offset=${offsetCounter}&limit=${LIMIT}`).then(
+        data => {
+          page.innerHTML = pageCounter;
+          let temp = data.results.map(pokemon => CardTitle(pokemon)).join('');
+          container.innerHTML = temp;
+        },
+      );
+    } else {
+      setDate(
+        `${api.main}?offset=${(offsetCounter -= LIMIT)}&limit=${LIMIT}`,
+      ).then(data => {
+        btnNext.removeAttribute('disabled');
+        page.innerHTML = pageCounter;
+        let temp = data.results.map(pokemon => CardTitle(pokemon)).join('');
+        container.innerHTML = temp;
+      });
+    }
+  }
+});
